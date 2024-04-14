@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div id="app">
+    <button @Click="add">点击添加</button>
+    <h1>唯一ID</h1>
+    <ul>
+        <li v-for="item in persons" :key="item.id">
+            {{item.id}} -- {{item.name}} -- {{item.age}} <input type="text">
+        </li>
+
+        <!--当前的key是被vue使用了-->
+
+    </ul>
+    <hr>
+    <h1>Index</h1>
+    <ul>
+        <li v-for="(item,index) in persons" :key="index">
+            {{item.id}} -- {{item.name}} -- {{item.age}}--{{index}}
+            <input type="text">
+        </li>
+    </ul>
+
+    <h2>如果使用索引作为key的话,新增的元素如果在数组的第一个的话,会占用原本 index0的位置</h2>
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script>
+    Vue.config.productionTip = false;
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            persons: [
+                {
+                    id: 1,
+                    name: "张三",
+                    age: 12
+                }, {
+                    id: 2,
+                    name: "李四",
+                    age: 12
+                }, {
+                    id: 3,
+                    name: "王五",
+                    age: 12
+                }
+            ]
+        },
+        methods: {
+            add(){
+                this.persons.unshift({
+                    id: 4,
+                    name: "赵六",
+                    age: 12
+                })
+            }
+        }
+    })
+</script>
+</html>

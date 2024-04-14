@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    {{number}}
+    <br>
+    <h2>
+        方法十倍后的Number
+        <span v-big-number="number"></span>
+    </h2>
+    <button @click="number++">点击我Number +1</button>
+    <hr>
+    <input v-f-bind:value="number" type="text">
+</div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+<!--    全局指令-->
+    Vue.directive("big-number",function(element,binding){
+        // console.log(element,binding)
+        element.innerText = binding.value * 10
+    })
+
+    Vue.directive("f-bind", {
+        bind(element, binding) {
+            element.value = binding.value
+            console.log("绑定成功时被调用")
+        },
+        inserted(element, binding) {
+            console.log()
+        },
+        update(element, binding) {
+        }
+    })
+
+    new Vue({
+        el: "#app",
+        data:{
+            number:0,
+        },
+        // 自定义指令
+        directives:{
+            // 注意这里的所有指令相关的this全是windows. 指令操作的this全是window, 因为指令就是操作dom的,
+            // 下面的操作都为局部指令
+
+
+            //最完整的函数写法
+            // 'big-number':function(element,binding){
+            //     // console.log(element,binding)
+            //     element.innerText = binding.value * 10
+            // },
+
+
+
+
+            //对象方式的指令,如果使用简写的方式,那么相当于只是使用了 bind 和 update
+            // "f-bind":{
+            //     bind(element, binding){
+            //         element.value = binding.value
+            //         console.log("绑定成功时被调用")
+            //     },
+            //     inserted(element, binding){
+            //         console.log("插入页面成功时被调用")
+            //         element.focus()
+            //     },
+            //     update(element, binding){
+            //         console.log("指令所在数据模版被重新解析时被调用")
+            //         element.value = binding.value
+            //     }
+            // }
+        }
+    })
+</script>
+</html>

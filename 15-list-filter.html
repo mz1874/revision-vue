@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div id="app">
+    <button @Click="add">点击添加</button>
+    <h1>唯一ID</h1>
+    <input type="text" placeholder="搜索" v-model="input_text">
+    <ul>
+        <li v-for="item in oldPerson" :key="item.id">
+            {{item.id}} -- {{item.name}} -- {{item.age}}
+        </li>
+    </ul>
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script>
+    Vue.config.productionTip = false;
+
+    // const app = new Vue({
+    //     el: "#app",
+    //     data: {
+    //         input_text: "",
+    //         oldPerson:[],
+    //         persons: [
+    //             {
+    //                 id: 1,
+    //                 name: "张三",
+    //                 age: 12
+    //             }, {
+    //                 id: 2,
+    //                 name: "李四",
+    //                 age: 12
+    //             }, {
+    //                 id: 3,
+    //                 name: "王五",
+    //                 age: 12
+    //             }, {
+    //                 id: 4,
+    //                 name: "王六",
+    //                 age: 12
+    //             },
+    //             {
+    //                 id: 5,
+    //                 name: "孙七",
+    //                 age: 12
+    //             },
+    //             {
+    //                 id: 6,
+    //                 name: "周八",
+    //                 age: 12
+    //             },
+    //             {
+    //                 id: 7,
+    //                 name: "吴九",
+    //                 age: 12
+    //             },
+    //             {
+    //                 id: 8,
+    //                 name: "郑十",
+    //                 age: 12
+    //             }
+    //         ]
+    //     },
+    //     methods: {
+    //         add() {
+    //             this.persons.unshift({
+    //                 id: 4,
+    //                 name: "赵六",
+    //                 age: 12
+    //             })
+    //         }
+    //     },
+    //     // 数组过滤,需要使用监视方式的完整方式
+    //     watch: {
+    //         input_text:{
+    //             immediate:true,
+    //             handler(val, old){
+    //                 this.oldPerson = this.persons.filter(item => {
+    //                     // indexOf("")  == 0
+    //                     // 不包含-1
+    //                     // 包含1
+    //                     return item.name.indexOf(val) !==-1;
+    //                 })
+    //             }
+    //         }
+    //     }
+    // })
+
+    //TODO 使用计算属性实现
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            input_text: "",
+            persons: [
+                {
+                    id: 1,
+                    name: "张三",
+                    age: 12
+                }, {
+                    id: 2,
+                    name: "李四",
+                    age: 12
+                }, {
+                    id: 3,
+                    name: "王五",
+                    age: 12
+                }, {
+                    id: 4,
+                    name: "王六",
+                    age: 12
+                },
+                {
+                    id: 5,
+                    name: "孙七",
+                    age: 12
+                },
+                {
+                    id: 6,
+                    name: "周八",
+                    age: 12
+                },
+                {
+                    id: 7,
+                    name: "吴九",
+                    age: 12
+                },
+                {
+                    id: 8,
+                    name: "郑十",
+                    age: 12
+                }
+            ]
+        },
+        methods: {
+            add() {
+                this.persons.unshift({
+                    id: 4,
+                    name: "赵六",
+                    age: 12
+                })
+            }
+        },
+        computed:{
+            oldPerson(){
+                return this.persons.filter(item => {
+                    return item.name.indexOf(this.input_text) !==-1;
+                })
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+<!--标签选择器,选择所有带有v-cloak属性的标签,并隐藏掉-->
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+<!--当vue接管当前的dom元素时,vue会自动的将v-cloak属性移除掉-->
+    <p v-cloak>{{name}}</p>
+</div>
+<script src="js/vue.js"></script>
+</body>
+<script>
+    new Vue({
+        el: "#app",
+        data:{
+            name :"Hello"
+        },
+    })
+</script>
+</html>

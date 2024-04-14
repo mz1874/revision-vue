@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    今天的天气很{{info}}
+    <button @click="isHot = !isHot">点击切换</button>
+</div>
+</body>
+
+
+<script src="js/vue.js"></script>
+<script>
+    Vue.config.productionTip = false;
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            name: "Jas",
+            isHot: true,
+        },
+
+        methods:{
+
+        },
+        computed:{
+            info(){
+                return this.isHot ? "炎热":"寒冷";
+            }
+        },
+        watch:{
+            // isHot: {
+            //     // immediate:true,
+            //     handler(newVal, oldVal){
+            //         alert("被修改了")
+            //     },
+            // }
+        }
+    })
+
+    //两种监视方式的写法
+    app.$watch('isHot',{
+        handler(newVal, oldVal){
+            alert("Changed")
+        }
+    })
+</script>
+</html>

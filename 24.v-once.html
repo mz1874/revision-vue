@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    初始化的值 <p v-once>{{number}}</p><br>
+    <p>{{number}}</p><br>
+    <button @click="number++">点击我Number +1</button>
+<!--    v-once的节点在初次动态渲染之后就会变成静态的资源，之后不再改变-->
+</div>
+</body>
+<script src="js/vue.js"></script>
+<script src="js/day.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data:{
+            number:0,
+        },
+    })
+</script>
+</html>

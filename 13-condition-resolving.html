@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div id="app">
+    <!--频率高的使用v-show-->
+    <p v-show="if_show">Hello</p>
+    <!--频率低的情况下,频繁操作dom-->
+    <p v-if="if_show">Hello</p>
+    <p v-else>v-else</p>
+
+
+    <button @click="show">点击切换</button>
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script>
+    Vue.config.productionTip = false;
+
+    const app = new Vue({
+        el:"#app",
+        data:{
+            name : "Jas",
+            if_show:true
+        },
+        methods:{
+            show(){
+                this.if_show = !this.if_show
+            }
+        }
+    })
+</script>
+</html>

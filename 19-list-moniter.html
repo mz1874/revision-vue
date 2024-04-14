@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div id="app">
+    <button @click="update">更新</button>
+    <ul>
+        <li v-for="item in persons" :key="item.id">
+            {{item.id}} -- {{item.name}} -- {{item.age}}
+        </li>
+    </ul>
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script>
+    Vue.config.productionTip = false;
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            persons: [
+                {
+                    id: 1,
+                    name: "张三",
+                    age: 12
+                }, {
+                    id: 2,
+                    name: "李四",
+                    age: 12
+                }, {
+                    id: 3,
+                    name: "王五",
+                    age: 12
+                }
+            ],
+        },
+        methods: {
+            update() {
+                //只允许使用vue提供的api来修改数组的话会触发vue的响应式
+                /*
+                * push
+                * shift
+                *pop
+                * unshift
+                * sort
+                * reverse()
+                *
+                * 也可以使用vue.set替换
+                * 也可以使用vm.$set替换
+                *
+                * */
+                this.persons.push({
+                    id: 4,
+                    name: "Jas",
+                    age: 12
+                })
+            }
+        }
+    })
+
+    //     17 中不能修改掉的原因是因为对数组的每一个元素不具备监视情况
+
+</script>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div id="app">
+    <h1>遍历数组</h1>
+    <ul>
+        <li v-for="item in persons" :key="item.id">
+            {{item.id}} -- {{item.name}} -- {{item.age}}
+        </li>
+    </ul>
+
+    <ul>
+        <li v-for="(item, index) of persons" :key="item.id">
+            {{item}} -- {{index}}
+        </li>
+    </ul>
+
+    <h1>遍历对象</h1>
+    <ul>
+        <li v-for="(value, key) of car" :key="key">
+            {{value}} -- {{key}}
+        </li>
+    </ul>
+
+    <h1>遍历字符串</h1>
+    <h1>遍历指定次数</h1>
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script>
+    Vue.config.productionTip = false;
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            persons: [
+                {
+                    id: 1,
+                    name: "张三",
+                    age: 12
+                }, {
+                    id: 2,
+                    name: "李四",
+                    age: 12
+                }, {
+                    id: 3,
+                    name: "王五",
+                    age: 12
+                }
+            ],
+            car:{
+                color:"red",
+                name :"宝马"
+            }
+        },
+        methods: {}
+    })
+</script>
+</html>

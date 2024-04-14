@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div id="app">
+    <h1>学生信息</h1>
+    <br>
+    <button @click="student.age ++">年龄+1</button>
+    </br>
+    <br>
+    <button @click="add_gender()">添加性别属性,默认男</button>
+    </br>
+    <br>
+    <button @click="add_one_friend_to_top()">列表首位新增一个朋友</button>
+    </br>
+    <br>
+    <button @click="change_name()">修改第一位朋友名称为张三</button>
+    </br>
+    <br>
+    <button @click="add_one_more_hobby()">添加一个爱好</button>
+    </br>
+    <br>
+    <button @click="update_hobby()">更新第一个爱好为开车</button>
+    </br>
+    <h3>姓名:{{student.name}}</h3></br>
+    <h3>年龄:{{student.age}}</h3></br>
+    <h3>性别:{{student.gender}}</h3></br>
+    <h3>爱好</h3>
+    <ul>
+        <li v-for="(item,index) in student.hobby" @key:index>{{item}}</li>
+    </ul>
+
+    <h3>朋友们</h3>
+    <ul>
+        <li v-for="(item,index) in student.friends" @key:index>{{item.name}} -- {{item.age}}</li>
+    </ul>
+
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script>
+    Vue.config.productionTip = false;
+
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            student: {
+                name: 'tom',
+                age: 18,
+                hobby: ['抽烟', '喝酒', '烫头'],
+                friends: [
+                    {name: 'Jas', age: 35},
+                    {name: 'Lim', age: 18}
+                ]
+            }
+        },
+        methods: {
+            add_gender() {
+                Vue.set(this.student, 'gender', '男')
+            },
+
+            add_one_friend_to_top() {
+                this.student.friends.unshift({
+                    name: 'Jasmine',
+                    age: 18
+                })
+            },
+
+            change_name() {
+               this.student.friends[0].name = '张三';
+            },
+
+            add_one_more_hobby(){
+                this.student.hobby.push("打游戏")
+            },
+            update_hobby(){
+                // this.student.hobby.splice(0,1,"开车")
+                // Vue.set(this.student.hobby,0,'开车')
+                this.$set(this.student.hobby,0,'开车')
+            }
+        }
+    })
+
+
+</script>
+</html>

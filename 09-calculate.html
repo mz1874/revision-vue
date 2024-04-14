@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    姓 <input type="text" v-model="firstName">
+    <br>
+    名 <input type="text" v-model="lastName">
+    <br>
+    姓名: {{fullName()}}
+</div>
+
+</body>
+
+<script src="js/vue.js"></script>
+<script>
+    Vue.config.productionTip = false;
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            firstName: "",
+            lastName: ""
+        },
+        methods:{
+            fullName(){
+                return this.firstName + "" + this.lastName
+            }
+        },
+
+    })
+</script>
+</html>

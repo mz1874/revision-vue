@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--v-pre 可以跳过vue解析模版, 可以用来加快静态资源解析速度-->
+    <p>V-ONCE</p><br>
+    <p v-pre>{{number}}</p>
+    <button @click="number++">点击我Number +1</button>
+<!--    v-once的节点在初次动态渲染之后就会变成静态的资源，之后不再改变-->
+</div>
+</body>
+<script src="js/vue.js"></script>
+<script src="js/day.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data:{
+            number:0,
+        },
+    })
+</script>
+</html>

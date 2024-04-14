@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div id="app">
+    {{name}}
+    <input type="text" v-model="name">
+    <p v-text="name"></p>
+    <p :name="name">sss</p>
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script>
+    Vue.config.productionTip = false;
+
+    const app = new Vue({
+        el:"#app",
+        data:{
+            name : "Jas",
+            url:"https://www.baidu.com"
+        }
+    })
+</script>
+</html>

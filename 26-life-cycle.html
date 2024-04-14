@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div id="app">
+    {{opacity}}
+    <h2 :style="{opacity}">欢迎学习VUE</h2>
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script>
+    Vue.config.productionTip = false;
+
+    const app = new Vue({
+        el:"#app",
+        data:{
+            opacity:1
+        },
+        methods:{
+
+        },
+
+        beforeCreate(){
+            // 数据代理还没开始
+
+        },
+
+        created(){
+            //数据监测代理创建外币
+        },
+
+        beforeMount(){
+            //虚拟dom在内存中已经生成好,此时操作真实dom无效,因为在下一个阶段会被虚拟dom替换
+        },
+        // 挂载时callback function
+        mounted(){
+            //挂载虚拟dom替换掉了真实的DOM
+                setInterval(()=>{
+                    this.opacity -= 0.01;
+                    if (this.opacity <= 0){
+                        this.opacity = 1;
+                    }
+                },16)
+        },
+
+        beforeUpdate(){
+
+        },
+
+        updated(){
+
+        },
+
+        beforeDestroy(){
+
+        },
+
+        destroyed(){
+
+        }
+
+
+
+    })
+</script>
+</html>

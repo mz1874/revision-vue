@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    天气{{info}}
+    <button @click="isHot = !isHot">改变天气</button>
+    <hr>
+</div>
+</body>
+
+
+<script src="js/vue.js"></script>
+<script>
+    Vue.config.productionTip = false;
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            name: "Jas",
+            isHot: true,
+            //深度监视监视对象里的某个数据
+            numbers:{
+                a:1,
+                b:2
+            }
+        },
+
+        methods:{
+
+        },
+        computed:{
+            info(){
+                return this.isHot ? "炎热":"寒冷";
+            }
+        },
+        watch:{
+
+            //缩写
+            // isHot(newval, old){
+            //     console.log(newval,old)
+            // },
+
+            //完整写法
+            numbers:{
+                // immediate:true;
+                deep:true,
+                handler(val, old){
+                    console.log(val,old)
+                    console.log("改变了")
+                }
+            }
+
+        }
+    })
+
+
+    //简写
+    app.$watch('isHot',function (newValue, oldValue){
+        console.log(newValue,oldValue)
+    })
+
+    //完整
+    app.$watch('isHot',{
+        deep:true,
+        handler(val, old){
+            console.log(val,old)
+        }
+    })
+
+
+</script>
+</html>

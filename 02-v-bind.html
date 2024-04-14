@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div id="app">
+    <a :href="url">点击跳转</a>
+    <a v-bind:href="url">点击跳转</a>
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script>
+    Vue.config.productionTip = false;
+
+    const app = new Vue({
+        el:"#app",
+        data:{
+            name : "Jas",
+            url:"https://www.baidu.com"
+        }
+    })
+</script>
+</html>

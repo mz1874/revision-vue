@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+
+    <style>
+        .basic{
+            height: 100px;
+            width: 200px;
+            border: 1px red solid;
+            background: white;
+        }
+
+        .happy{
+            height: 100px;
+            width: 200px;
+            border: 1px red solid;
+            background: red;
+        }
+
+        .sad{
+            height: 100px;
+            width: 200px;
+            border: 1px red solid;
+            background: green;
+        }
+    </style>
+<body>
+<div id="app">
+<!--   <p :style="style">Hello</p>-->
+   <p :style="styleArr">Hello</p>
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script>
+    Vue.config.productionTip = false;
+
+    const app = new Vue({
+        el:"#app",
+        data:{
+            /*第一种写法样式对象*/
+            style:{
+                height:"100px",
+                width:"200px",
+                fontSize:"40px",
+                border:"1px red solid",
+                background:"white"},
+
+            /*第二种数组样式*/
+            styleArr:[
+                {
+                    height:"100px",
+                },
+                {
+                    width:"200px",
+                },
+                {
+                    border:"1px red solid",
+                }
+            ]
+        },
+        /*第二种写法数组*/
+
+        methods:{
+
+        }
+    })
+</script>
+</html>

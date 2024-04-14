@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div id="app">
+    欢迎来到{{name}}
+    <button v-on:click="showInfo">不传递参数</button>
+    <button v-on:click="showInfo2(66, $event)">传递参数</button>
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script>
+    Vue.config.productionTip = false;
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            name: "Inti",
+
+            //不要把function设置到data中, 否则vue将会额外做数据代理
+            // showInfo2:(val,event)=>{
+            //     alert(val)
+            //     alert(event)
+            // }
+        },
+        methods: {
+            // showInfo:function (e){
+            //     alert(e)
+            //     alert("This is extra information")
+            // }
+
+            // showInfo(event) {
+            //     alert(this===app);
+            //     alert(event)
+            // }
+
+            //使用箭头函数的话 没办法找到this 所以向上找到了windows, 不要使用lambda 函数
+            showInfo:(event)=>{
+                alert(this)
+                alert(event)
+            },
+
+
+            showInfo2:(val,event)=>{
+                alert(val)
+                alert(event)
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    numberA : {{numbers.a}}
+    <button @click="numbers.a ++">点击A++</button>
+    <hr>
+    numberB : {{numbers.b}}
+    <button @click="numbers.b ++">点击B++</button>
+</div>
+</body>
+
+
+<script src="js/vue.js"></script>
+<script>
+    Vue.config.productionTip = false;
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            name: "Jas",
+            isHot: true,
+            //深度监视监视对象里的某个数据
+            numbers:{
+                a:1,
+                b:2
+            }
+        },
+
+        methods:{
+
+        },
+        computed:{
+            info(){
+                return this.isHot ? "炎热":"寒冷";
+            }
+        },
+        watch:{
+            //多级监视的话,不能使用缩写形式
+            // 'numbers.a': {
+            //     handler(newVal, oldVal){
+            //         alert("被修改了")
+            //     },
+            // }
+
+
+            //监视number内所有的每一项数据操作
+
+
+            //vue 提供对所有数据的监视,但是watch 并不提供,如果想要监视多层级的话需要增加深度监视功能
+            numbers:{
+                deep:true,
+                handler(val, old){
+                    console.log(val,old)
+                    console.log("改变了")
+                }
+            }
+
+        }
+    })
+
+
+</script>
+</html>

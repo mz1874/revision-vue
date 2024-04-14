@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div id="app">
+  {{name}}
+  <input type="text" v-model="name">
+  <p v-text="name"></p>
+  <p :name="name">sss</p>
+
+  {{students}}
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script>
+  Vue.config.productionTip = false;
+
+  //第一种绑定vue的方式
+
+  // const app = new Vue({
+  //   el:"#app",
+  //   data:{
+  //     name : "Jas",
+  //     url:"https://www.baidu.com"
+  //   }
+  // })
+
+
+  // 第二种绑定, 使用Mount进行挂载
+  // const app = new Vue({
+  //   data:{
+  //     name : "Jas",
+  //     url:"https://www.baidu.com"
+  //   }
+  // })
+  //
+  // setTimeout(function (){
+  //   app.$mount("#app")
+  // },1000)
+
+
+  //data的第一种方式
+  // const app = new Vue({
+  //   el:"#app",
+  //   data:{
+  //     name : "Jas",
+  //     url:"https://www.baidu.com"
+  //   }
+  // })
+
+  // 完整写法
+  // const app = new Vue({
+  //   el:"#app",
+  //   data:function (){
+  //     return {
+  //       name : "I am name"
+  //     }
+  //   }
+  // })
+
+// 也可以使用缩写形式
+  const app = new Vue({
+    el:"#app",
+    data:{
+      name : "Short form",
+      students : ['zhangsan', 'lisi']
+    }
+  })
+</script>
+</html>

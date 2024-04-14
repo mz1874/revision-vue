@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div id="app">
+<!--
+    enter
+    space
+    delete
+    esc
+    tab
+    up
+    down
+    left
+    right
+
+    也可以使用指定的按键
+
+    不推荐使用key code,已经不再长久被支持
+-->
+    <input type="text" placeholder="请输入" @keydown.ctrl.a="showInfo">
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script>
+    Vue.config.productionTip = false;
+
+    const app = new Vue({
+        el:"#app",
+        data:{
+            name : "Jas"
+        },
+        methods:{
+            showInfo(e){
+                console.log(e.target.value)
+            }
+        }
+    })
+</script>
+</html>

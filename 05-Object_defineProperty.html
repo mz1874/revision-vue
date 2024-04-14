@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div id="app">
+
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script>
+    let number = 1;
+
+  let person = {
+      name :'Jas'
+  }
+  console.log(person)
+
+  //新定义的属性不参加遍历, 不可枚举
+
+
+  Object.defineProperty(person,'age',{
+      // value:99,
+      // //if add this propertyp , it will be enumerable
+      // enumerable:true,
+      // // 可以被修改
+      // writable:true,
+      // // 可以被删除
+      // configurable:true
+
+
+      //当有人调用person 的age属性的时候, 再返回,类似懒加载, 数据绑定的原理
+      get(){
+          return number;
+      },
+
+      set(newValue){
+          number = newValue;
+      }
+
+  })
+
+
+  console.log(Object.keys(person))
+  console.log(person)
+  person.age = 100;
+  console.log(person)
+</script>
+</html>

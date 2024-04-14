@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+
+    <style>
+        .basic{
+            height: 100px;
+            width: 200px;
+            border: 1px red solid;
+            background: white;
+        }
+
+        .happy{
+            height: 100px;
+            width: 200px;
+            border: 1px red solid;
+            background: red;
+        }
+
+        .sad{
+            height: 100px;
+            width: 200px;
+            border: 1px red solid;
+            background: green;
+        }
+    </style>
+<body>
+<div id="app">
+    <!--绑定样式-->
+    <p :class="arr">{{name}}</p>
+    <p :class="style">{{name}}</p>
+    <p :class="classObject">{{name}}</p>
+
+
+    <!--适用于样式的类名不确定 需要动态指定-->
+    <button @click="changeMod">点击我改变第一个的样式</button>
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script>
+    Vue.config.productionTip = false;
+
+    const app = new Vue({
+        el:"#app",
+        data:{
+            name : "Jas",
+            // 被上述样式绑定,值为css样式
+            style: "",
+
+            //第二种方式绑定数组,数组的方式
+            arr:['arr1', 'arr2', 'arr3'],
+
+            //第三种方式
+            classObject:{
+                arr1:true,
+                arr2:false,
+                arr3:true
+            }
+        },
+        methods:{
+            changeMod()
+            {
+                // 第一种方式
+                this.style = "sad"
+            }
+        }
+    })
+</script>
+</html>

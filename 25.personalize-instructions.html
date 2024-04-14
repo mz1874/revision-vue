@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    {{number}}
+    <br>
+    <h2>
+        方法十倍后的Number
+        <span v-big="number"></span>
+    </h2>
+    <button @click="number++">点击我Number +1</button>
+</div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data:{
+            number:0,
+        },
+        // 自定义指令
+        directives:{
+            // 函数式
+            /**
+             *
+             * @param element 真实dom
+             * @param b
+             *
+             * 元素的调用时机为,元素和指令第一次被绑定的时候会被触发
+             * 指令所在的模版被重新解析的时候会重新被调用
+             */
+            big(element,binding){
+                // console.log(element,binding)
+                element.innerText = binding.value * 10
+            }
+        }
+    })
+</script>
+</html>

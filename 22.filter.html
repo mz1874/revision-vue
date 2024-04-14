@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+   计算属性 {{currentTime}}<br>
+    方法:{{currentTimeMethod()}}<br>
+<!--    TimeFormat的返回值,把当前的文本给替换了-->
+    过滤器,不传递参数:{{timeStamp | timeFormat }}<br>
+    过滤器,传递参数:{{timeStamp | timeFormater("YYYY-MM-DD") }}<br>
+    过滤器,传递参数,多重过滤器:{{timeStamp | timeFormater("YYYY-MM-DD") | CUT }}<br>
+    过滤器,传递参数,全局过滤器:{{timeStamp | timeFormater("YYYY-MM-DD") | global_filter }}<br>
+</div>
+</body>
+<script src="js/vue.js"></script>
+<script src="js/day.js"></script>
+<script>
+
+    const data = new Date();
+    // 注册过滤器的步骤需要在Vue创建之前注册完成
+    Vue.filter("global_filter",function (value) {
+        return value.slice(0,4)
+    })
+    new Vue({
+        el: "#app",
+        data:{
+            timeStamp:data.getTime()
+        },
+        computed:{
+            currentTime(){
+                return dayjs(this.timeStamp).format("YYYY-MM-DD HH:mm:ss")
+            }
+        },
+        methods:{
+            currentTimeMethod(){
+                return dayjs(this.timeStamp).format("YYYY-MM-DD HH:mm:ss")
+            }
+        },
+        filters:{
+            timeFormat(v) {
+                console.log(v)
+                return dayjs(this.timeStamp).format("YYYY-MM-DD HH:mm:ss")
+            },
+            timeFormater(value,format){
+                return dayjs(this.timeStamp).format(format)
+            },
+            CUT(value){
+                return value.slice(0,4);
+            }
+        }
+    })
+</script>
+</html>

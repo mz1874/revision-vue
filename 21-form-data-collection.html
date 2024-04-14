@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--阻止表单默认提交-->
+<div id="app" @submit.prevent="submit()">
+    <form>
+        <!--trim 去掉空格-->
+        账号 <input type="text" v-model.trim="userInfo.account"><br><br>
+        密码 <input type="password" v-model="userInfo.password"><br><br>
+        年龄 <input type="number" v-model.number="userInfo.age"><br><br>
+        性别:
+        男 <input type="radio" name="sex" v-model="userInfo.sex" value="男">
+        女 <input type="radio" name="sex" v-model="userInfo.sex" value="女"><br><br>
+        爱好:
+        <br>
+        学习<input type="checkbox" v-model="userInfo.hobby" value="学习"><br><br>
+        打游戏<input type="checkbox" v-model="userInfo.hobby" value="打游戏">
+        <br><br>
+        吃饭<input type="checkbox"><br><br>
+        所属校区:
+        <select v-model="userInfo.campus">
+            <option value="">请选择校区</option>
+            <option value="ShangHai">上海</option>
+            <option value="BeiJing">北京</option>
+            <option value="TianJin">天津</option>
+            <option value="WuHan">武汉</option>
+        </select>
+        <br>
+        其他信息
+        <br>
+        <!--懒加载-->
+        <textarea name="" v-model.lazy="userInfo.other" id="" cols="30" rows="10">
+
+      </textarea>
+        <br>
+        <input type="checkbox" v-model="userInfo.agree">阅读并且接受用户协议 <a href="">用户协议</a>
+        <br>
+        <button>提交</button>
+    </form>
+</div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            userInfo: {
+                account: "",
+                password: "",
+                age: "",
+                sex: "女",
+                hobby: [],
+                campus: "",
+                other: "",
+                agree: false
+            }
+
+        },
+        methods: {
+            submit() {
+                console.log(JSON.stringify(this.userInfo))
+            }
+        }
+    })
+</script>
+</html>

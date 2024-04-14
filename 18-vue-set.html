@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div id="app">
+    <button @click="update">更新</button>
+    <ul>
+        <li v-for="item in persons" :key="item.id">
+            {{item.id}} -- {{item.name}} -- {{item.age}}
+        </li>
+    </ul>
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script>
+    Vue.config.productionTip = false;
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            persons: [
+                {
+                    id: 1,
+                    name: "张三",
+                    age: 12
+                }, {
+                    id: 2,
+                    name: "李四",
+                    age: 12
+                }, {
+                    id: 3,
+                    name: "王五",
+                    age: 12
+                }
+            ],
+        },
+        methods: {
+            update() {
+
+                //方法体内使用vue.set
+                //只允许往data内新增响应式. 不允许向vm 或者data上加
+
+                // 无法修改成功
+                // this.persons[0] = {
+                //     id: 4,
+                //     name: "Jas",
+                //     age: 12
+                // }
+
+                // 可以修改
+                this.persons[0].name = "yiwen"
+            }
+        }
+    })
+
+//     使用Vue.set可以使后添加的数据也能具有响应式
+    app.$set(app.persons,'sex','男')
+    // app.$set(app._data.persons,'sex','男')
+
+</script>
+</html>

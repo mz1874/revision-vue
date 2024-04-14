@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<style>
+    *{
+        margin-top: 50px;
+    }
+    li{
+        height: 50px;
+    }
+</style>
+<body>
+<div id="app">
+    <a href="https://baidu.com" @click.prevent="showInfo">点击前往百度</a>
+    <!--
+        prevent
+        stop
+        once
+        capture
+        self
+        passive
+    -->
+    <div @click="showInfo">
+        <button @click.stop="showInfo">阻止默认事件</button>
+    </div>
+
+
+    <div @click="showInfo">
+        <a href="https://www.baidu.com" @click.prevent.stop="showInfo">阻止冒泡,阻止默认行为</a>
+    </div>
+
+    <button @click.once="showInfo">once</button>
+
+<!--    冒泡是由内到外, 捕获是由外到内-->
+    <div @click.capture="showInfo2(1,$event)">
+        <button @click="showInfo2(2,$event)">capture</button>
+    </div>
+
+
+    <div @click.self="showInfo2(1,$event)">
+        <button @click="showInfo2(2,$event)">self</button>
+    </div>
+
+
+    <!--Scroll 的和wheel的区别是Scroll 不会等待事件完成后执行, wheel 必须要等待 -->
+    <ul @scroll="run()" style="height: 200px; overflow: auto; border: 1px red solid">
+        <li><a href="https://baidu.com">百度</a></li>
+        <li><a href="https://baidu.com">百度</a></li>
+        <li><a href="https://baidu.com">百度</a></li>
+        <li><a href="https://baidu.com">百度</a></li>
+        <li><a href="https://baidu.com">百度</a></li>
+    </ul>
+
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script>
+    Vue.config.productionTip = false;
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            name: "Inti",
+
+        },
+        methods: {
+            showInfo(e) {
+                alert("默认事件被阻止了")
+            },
+
+            showInfo2(val, event){
+                alert(val)
+            },
+
+            run(){
+                for (let i = 0; i < 100000; i++) {
+                    console.log("#")
+                }
+                console.log("done")
+            }
+
+        }
+    })
+</script>
+</html>

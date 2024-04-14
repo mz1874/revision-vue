@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    姓 <input type="text" v-model="firstName">
+    <br>
+    名 <input type="text" v-model="lastName">
+    <br>
+    {{fullName}}
+</div>
+
+</body>
+
+
+
+<!--计算属性对比watch-->
+
+<!--
+    computed能完成的watch一定能完成
+    watch完成的computed 不一定
+
+    被vue管理的方法使用普通函数
+    不被vue管理的使用lambda
+    这样可以确保this 指向vm
+-->
+
+
+
+<script src="js/vue.js"></script>
+<script>
+    Vue.config.productionTip = false;
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            firstName: "",
+            lastName: "",
+            fullName:""
+        },
+       computed:{
+
+       },
+        watch:{
+            /*异步操作使用watch*/
+            firstName(newValue, oldValue){
+
+                //向上找This. 所以是vm
+               setTimeout(()=>{
+                   this.fullName = newValue + this.lastName
+               },1000)
+            },
+            lastName(newValue, oldValue){
+                this.fullName = this.firstName + newValue
+            },
+        }
+        
+    })
+</script>
+</html>
